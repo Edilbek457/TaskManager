@@ -1,0 +1,79 @@
+server:
+  servlet:
+    session:
+      cookie:
+        http-only: true
+        secure: true
+  port: 8080
+
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: 'toleevedilbek@gmail.com'
+    password: 'bzmp rxcs kiqw pgdh'
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  jwt:
+    secret: 9o+xF6D7MxY+4s3kPnmO3fD1KxA3zqGuRh1f2KY4VfhxwTANR+H3CuMzFHUoyVXm7CgIaT7G0tvO6ZkczK6XzA==
+  elasticsearch:
+    uris: http://localhost:9200
+    connection-timeout: 20s
+    socket-timeout: 20s
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+    consumer:
+      group-id: log-consumer-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: user
+    password: password
+    virtual-host: /
+    listener:
+      simple:
+        concurrency: 2
+        max-concurrency: 10
+        acknowledge-mode: auto
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/mongodb
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+  datasource:
+    username: user
+    password: password
+    url: jdbc:postgresql://localhost:5432/task-flow
+  application:
+    name: TaskFlow
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+file:
+  valid:
+    max-size: 10485760
+    allowed-mime-types:
+      - image/png
+      - image/jpeg
+      - application/pdf
